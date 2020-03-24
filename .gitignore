@@ -1,13 +1,46 @@
-*dependency-reduced-pom.xml
-.classpath
-.project
-.settings/
-target/
-devenv
-*.log*
+# Compiler Files #
+*.class
+
+# Package Files #
+# *.jar #
+*.war
+*.ear
+
+# IDE Files #
 *.iml
-.idea/
-*.versionsBackup
-!NOTICE-BIN
-!LICENSE-BIN
+.idea/**
+
+*.classpath
+*.project
+*.settings
+target/
+
+# Zip Files #
+*.zip
+*.7z
+*.rar
+
+# Installer Files #
+*.exe
+*.so
+*.dll
+*.cab
+
+# Log Temp Files #
+*.via
+*.tmp
+*.err
+*.keep
+
+# Version Temp Files #
+*.bak
+*.svn
+*.git
+
+# MAC 系统文件 #
 .DS_Store
+
+
+*pom.xml*Backup
+
+*.log
