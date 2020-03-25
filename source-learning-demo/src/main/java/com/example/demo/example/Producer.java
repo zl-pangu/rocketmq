@@ -21,14 +21,22 @@ public class Producer {
 
 
     public static void main(String[] args) {
+        //同步消息发送
         try {
-            //同步消息发送
             syncSendMsg();
-            //异步消息发送
-//            asyncSendMsg();
-        } catch (MQClientException | UnsupportedEncodingException | RemotingException | InterruptedException | MQBrokerException e) {
-            log.error("", e);
+        } catch (MQClientException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (RemotingException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (MQBrokerException e) {
+            e.printStackTrace();
         }
+        //异步消息发送
+//            asyncSendMsg();
     }
 
     /**

@@ -19,10 +19,10 @@
 <configuration>
     <appender name="DefaultAppender"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/Users/zhouliang/IdeaProjects/workspace/rocketmq/zlsy-rocketmq-source-learning-from-github/aconfigandlog/logs/rocketmqlogs/namesrv_default.log</file>
+        <file>/Users/zhouliang/data/logs/rocketmqlogs/namesrv_default.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>/Users/zhouliang/IdeaProjects/workspace/rocketmq/zlsy-rocketmq-source-learning-from-github/aconfigandlog/logs/rocketmqlogs/otherdays/namesrv_default.%i.log.gz</fileNamePattern>
+            <fileNamePattern>/Users/zhouliang/data/logs/rocketmqlogs/otherdays/namesrv_default.%i.log.gz</fileNamePattern>
             <minIndex>1</minIndex>
             <maxIndex>5</maxIndex>
         </rollingPolicy>
@@ -38,10 +38,10 @@
 
     <appender name="RocketmqNamesrvAppender_inner"
               class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/Users/zhouliang/IdeaProjects/workspace/rocketmq/zlsy-rocketmq-source-learning-from-github/aconfigandlog/logs/rocketmqlogs/namesrv.log</file>
+        <file>/Users/zhouliang/data/logs/rocketmqlogs/namesrv.log</file>
         <append>true</append>
         <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>/Users/zhouliang/IdeaProjects/workspace/rocketmq/zlsy-rocketmq-source-learning-from-github/aconfigandlog/logs/rocketmqlogs/otherdays/namesrv.%i.log.gz</fileNamePattern>
+            <fileNamePattern>/Users/zhouliang/data/logs/rocketmqlogs/otherdays/namesrv.%i.log.gz</fileNamePattern>
             <minIndex>1</minIndex>
             <maxIndex>5</maxIndex>
         </rollingPolicy>
