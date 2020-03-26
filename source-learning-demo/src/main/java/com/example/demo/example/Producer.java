@@ -22,7 +22,7 @@ public class Producer {
 
     public static void main(String[] args) {
         //同步消息发送
-        try {
+   /*     try {
             syncSendMsg();
         } catch (MQClientException e) {
             e.printStackTrace();
@@ -34,9 +34,22 @@ public class Producer {
             e.printStackTrace();
         } catch (MQBrokerException e) {
             e.printStackTrace();
-        }
+        }*/
         //异步消息发送
 //            asyncSendMsg();
+
+        //单向消息发送
+        try {
+            onewayProducer();
+        } catch (MQClientException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (RemotingException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -146,5 +159,25 @@ public class Producer {
 
             producer.shutdown();
         }
+    }
+
+    /**
+     * 单向传输用于需要中等可靠性的情况，例如日志收集。
+     */
+    public static void onewayProducer() throws MQClientException, UnsupportedEncodingException, RemotingException, InterruptedException {
+        DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
+        producer.setNamesrvAddr("localhost:9876");
+        producer.start();
+
+        for (int i = 0; i < 1; i++) {
+            Message message = new Message("TopicTest"
+                    , "TagA"
+                    , ("Hello RocketMQ " +
+                    i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            producer.sendOneway(message);
+        }
+
+        producer.shutdown();
+
     }
 }
