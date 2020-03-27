@@ -1,5 +1,6 @@
 package com.example.demo.orderlymsg;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQBrokerException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
@@ -17,10 +18,12 @@ import java.util.List;
  * @author zhouliang
  * @date 2020/03/27
  **/
+@Slf4j
 public class OrderedProducer {
 
     /**
      * 下面的示例演示发送/接收全局和部分排序的消息
+     *
      * @param args
      * @throws MQClientException
      * @throws UnsupportedEncodingException
@@ -42,6 +45,11 @@ public class OrderedProducer {
         String[] tags = {"TagA", "TagB", "TagC", "TagD", "TagE"};
 
         for (int i = 0; i < 100; i++) {
+            //RocketMQ可以严格的保证消息有序。但这个顺序，不是全局顺序，只是分区（queue）顺序。要全局顺序只能一个分区。
+            //所以orderId取模一样的i都会进入一个队列里面
+            //这个队列里面的顺序是可以保证的。
+            //但是不能保证全局的顺序
+            //想要保证全局的顺序，那么就把队列数设置为1吧，但是这样就牺牲了性能！
             int orderId = i % 10;
             //tags length = 5，所以i % tags.length = ,====>>>
             Message message = new Message("TopicTestjjj", tags[i % tags.length], "KEY" + i,
@@ -58,11 +66,10 @@ public class OrderedProducer {
                 }
             }, orderId);
 
-            System.out.printf("%s%n", sendResult);
+            log.info("orderId===>>{},message====>>{},send：{}", orderId, message, sendResult);
         }
 
         //server showdown
-
         producer.shutdown();
     }
 }
