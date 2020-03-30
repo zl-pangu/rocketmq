@@ -3,6 +3,7 @@ package com.example.demo.canalexample;
 import com.example.demo.canalexample.dto.Data;
 import com.example.demo.canalexample.dto.TestCanalDTO;
 import com.example.demo.utils.JsonUtil;
+import com.example.demo.utils.RocketConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -25,7 +26,7 @@ public class CanalConsumer {
 
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("example-group");
-        consumer.setNamesrvAddr("139.224.115.195:9876");
+        consumer.setNamesrvAddr(RocketConstant.NAME_SERVER);
         consumer.subscribe("gantrydata_async_topic", "*");
         //最大可以拉取的数量
         consumer.setConsumeMessageBatchMaxSize(1000);
