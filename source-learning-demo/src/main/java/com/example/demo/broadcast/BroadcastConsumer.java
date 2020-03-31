@@ -18,6 +18,14 @@ import java.util.List;
  **/
 public class BroadcastConsumer {
 
+
+    /**
+     * 广播模式的消费者。
+     * 在4.7.0 1000W
+     * @param args
+     * @throws MQClientException
+     */
+
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("example_group_name");
         consumer.setNamesrvAddr(RocketConstant.NAME_SERVER);
